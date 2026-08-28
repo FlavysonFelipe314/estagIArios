@@ -1,0 +1,26 @@
+.ai-badge {
+  float: right;
+  margin-top: 3px;
+  color: var(--lime);
+  font: 700 10px "DM Sans", sans-serif;
+  letter-spacing: .04em;
+}
+
+.strategy {
+  margin-top: 22px;
+  padding: 14px;
+  background: rgba(255, 255, 255, .08);
+  border-radius: 11px;
+}
+
+.strategy strong {
+  color: var(--lime);
+  font-size: 12px;
+}
+
+.strategy p {
+  margin: 5px 0 0;
+  color: #d5e1db;
+  font-size: 12px;
+  line-height: 1.45;
+}

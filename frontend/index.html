@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d5137">
+  <title>NutriPlan — seu plano alimentar</title>
+  <meta name="description" content="Crie uma sugestão alimentar simples e personalizada para a sua rotina.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="/static/ai.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="NutriPlan, início">
+      <span class="brand-mark" aria-hidden="true">N</span>
+      <span>Nutri<span>Plan</span></span>
+    </a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="#inicio" data-view-link="form" class="active">Início</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#meu-plano" data-view-link="plan">Meu plano</a>
+    </nav>
+    <button class="button button-small" type="button" data-new-plan>Novo plano <span>＋</span></button>
+  </header>
+
+  <main>
+    <section id="form-view" class="view">
+      <div class="hero" id="inicio">
+        <div class="eyebrow"><span>✦</span> Planejamento simples e inteligente</div>
+        <h1>Alimentação que cabe<br>na <em>sua rotina.</em></h1>
+        <p>Conte um pouco sobre você e receba uma sugestão de refeições equilibradas, com alimentos acessíveis e substituições práticas.</p>
+        <div class="hero-trust" aria-label="Benefícios">
+          <span>✓ Sem dietas mirabolantes</span><span>✓ Pronto em segundos</span><span>✓ Fácil de adaptar</span>
+        </div>
+      </div>
+
+      <section class="planner-shell" aria-labelledby="form-title">
+        <div class="planner-intro">
+          <div><span class="step-label">SEU PONTO DE PARTIDA</span><h2 id="form-title">Vamos montar seu plano</h2></div>
+          <p>Leva menos de 2 minutos</p>
+        </div>
+        <form id="plan-form" novalidate>
+          <fieldset>
+            <legend><span>1</span> Sobre você</legend>
+            <div class="form-grid form-grid-4">
+              <label class="span-2">Como podemos te chamar?
+                <input name="name" autocomplete="name" placeholder="Ex.: João" required minlength="2">
+                <small class="field-error" data-error="name"></small>
+              </label>
+              <label>Idade
+                <div class="input-suffix"><input name="age" type="number" inputmode="numeric" min="16" max="100" placeholder="29" required><span>anos</span></div>
+                <small class="field-error" data-error="age"></small>
+              </label>
+              <label>Sexo
+                <select name="sex" required><option value="">Selecione</option><option value="female">Feminino</option><option value="male">Masculino</option><option value="other">Outro</option></select>
+                <small class="field-error" data-error="sex"></small>
+              </label>
+              <label>Peso atual
+                <div class="input-suffix"><input name="weight" type="number" inputmode="decimal" step="0.1" min="35" max="300" placeholder="78"><span>kg</span></div>
+                <small class="field-error" data-error="weight"></small>
+              </label>
+              <label>Altura
+                <div class="input-suffix"><input name="height" type="number" inputmode="numeric" min="130" max="230" placeholder="178"><span>cm</span></div>
+                <small class="field-error" data-error="height"></small>
+              </label>
+              <label class="span-2">Nível de atividade
+                <select name="activity"><option value="">Como é sua rotina?</option><option value="sedentary">Pouco ativa</option><option value="light">Levemente ativa</option><option value="moderate">Ativa (3–5 treinos/semana)</option><option value="active">Muito ativa</option></select>
+                <small class="field-error" data-error="activity"></small>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend><span>2</span> Seu objetivo</legend>
+            <div class="choice-grid">
+              <label class="choice"><input type="radio" name="goal" value="lose" required><span class="choice-icon">↘</span><span><strong>Perder peso</strong><small>Déficit leve e mais saciedade</small></span></label>
+              <label class="choice"><input type="radio" name="goal" value="maintain"><span class="choice-icon">◎</span><span><strong>Manter o peso</strong><small>Equilíbrio para o dia a dia</small></span></label>
+              <label class="choice"><input type="radio" name="goal" value="gain"><span class="choice-icon">↗</span><span><strong>Ganhar massa</strong><small>Mais energia e proteína</small></span></label>
+            </div>
+            <small class="field-error" data-error="goal"></small>
+          </fieldset>
+
+          <fieldset>
+            <legend><span>3</span> Sua rotina alimentar</legend>
+            <div class="form-grid">
+              <label>Número de refeições por dia
+                <select name="meal_count"><option value="3">3 refeições</option><option value="4" selected>4 refeições</option><option value="5">5 refeições</option><option value="6">6 refeições</option></select>
+                <small class="field-error" data-error="meal_count"></small>
+              </label>
+              <label>Alimentos que você gosta <span class="optional">opcional</span>
+                <input name="preferred_foods" placeholder="Ex.: arroz, frango, ovos, banana">
+              </label>
+              <label class="span-2">Restrições, alergias ou alimentos que evita <span class="optional">opcional</span>
+                <input name="restrictions" placeholder="Ex.: lactose, glúten, frutos do mar">
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="form-action">
+            <div><strong>Pronto para começar?</strong><span>Você poderá imprimir e salvar seu plano.</span></div>
+            <button class="button button-generate" type="submit"><span class="button-text">Gerar meu plano</span><span aria-hidden="true">→</span></button>
+          </div>
+          <div id="form-alert" class="alert" role="alert" hidden></div>
+        </form>
+      </section>
+
+      <section id="como-funciona" class="how-it-works">
+        <span class="step-label">SIMPLES ASSIM</span><h2>Da sua rotina para o prato</h2>
+        <div class="steps"><article><b>01</b><h3>Conte sobre você</h3><p>Objetivo, rotina e preferências em um formulário direto.</p></article><article><b>02</b><h3>Receba seu plano</h3><p>Refeições, porções e macros organizados para o dia.</p></article><article><b>03</b><h3>Adapte sem culpa</h3><p>Use substituições equivalentes para manter a flexibilidade.</p></article></div>
+      </section>
+    </section>
+
+    <section id="plan-view" class="view plan-page" hidden>
+      <div class="plan-heading" id="meu-plano">
+        <div><button class="back-link" type="button" data-new-plan>← Criar outro plano</button><span class="eyebrow">✦ PLANO PERSONALIZADO</span><h1 id="plan-title">Seu plano alimentar</h1><p id="plan-date"></p></div>
+        <div class="heading-metrics" id="heading-metrics"></div>
+      </div>
+      <div class="plan-layout">
+        <div>
+          <div id="meal-list" class="meal-list"></div>
+          <section class="substitutions"><div class="sub-icon">⇄</div><div><h2>Substituições inteligentes</h2><p>Varie o cardápio sem perder o equilíbrio.</p><div id="substitution-list" class="substitution-list"></div></div></section>
+        </div>
+        <aside class="summary-card" id="summary-card"></aside>
+      </div>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#inicio"><span class="brand-mark">N</span><span>Nutri<span>Plan</span></span></a><p>Planejamento alimentar simples para uma rotina possível.</p><small>© 2026 NutriPlan · Conteúdo educativo</small></footer>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
